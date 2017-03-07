@@ -1,6 +1,6 @@
 /**
  * jquery.fbdropdownstyle.js
- * Version 1.1
+ * Version 1.2
  * March 2017
  *
  * Dropdown list styling (<select>).
@@ -59,7 +59,17 @@
             // Autres options.
             $styleable_dropdown.append('<dd><ul></ul></dd>');
             $options.each(function () {
-                $("dd ul", $styleable_dropdown).append('<li><a href="#">' +
+
+                // Default option receives "on" class.
+                var add_class = "";
+
+                if ($(this).val() == selected_option.val()) {
+                    add_class = ' class="on"';
+                }
+
+                // Add the <option>.
+                $("dd ul", $styleable_dropdown).append('<li><a' +
+                    add_class + ' href="#" > ' +
                     $(this).text() + '<span class="value">' +
                     $(this).val() + '</span></a></li>');
             });
@@ -78,8 +88,9 @@
             // CLICK somewhere else in the document closes the dopdown.
             $(document).on('click', function (evt) {
                 var $clicked = $(evt.target);
-                if (!$clicked.parents().hasClass("fbdropdownstyle"))
+                if (!$clicked.parents().hasClass("fbdropdownstyle")) {
                     $("dd ul", $styleable_dropdown).hide();
+                }
             });
 
             // CLICK on the selected item in the dropdown.
@@ -94,6 +105,11 @@
                 // Put the selected item in the original dropdown.
                 // And trigger a "change" event.
                 $dropdown.val($(this).find("span.value").html()).trigger("change");
+
+                // Add class "on" to selected item, so the next time the user opens the dropdown,
+                // the selected item will be "on".
+                $("a", $styleable_dropdown).removeClass("on");
+                $(this).addClass("on");
             });
         }
     };
