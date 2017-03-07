@@ -1,0 +1,19 @@
+
+/* FBDROPDOWNSTYLE CSS .......................................................................... */
+
+.fbdropdownstyle dd, .fbdropdownstyle dt, .fbdropdownstyle ul { margin:0px; padding:0px; }
+.fbdropdownstyle dd { position:relative; }
+.fbdropdownstyle a, .fbdropdownstyle a:visited { color:#816c5b; text-decoration:none; outline:none;}
+.fbdropdownstyle a:hover { color:#5d4617;}
+.fbdropdownstyle dt a:hover { color:#5d4617; border: 1px solid #d0c9af;}
+.fbdropdownstyle dt a {background:#e4dfcb url(arrow.png) no-repeat scroll right center; display:block; padding-right:20px;
+                border:1px solid #d4ca9a; width:160px; padding:5px;}
+.fbdropdownstyle dt a span {cursor:pointer; display:block;}
+.fbdropdownstyle dd ul { background:#e4dfcb none repeat scroll 0 0; border:1px solid #d4ca9a; color:#C5C0B0; display:none;
+                    left:0px; padding:5px 0px; position:absolute; top:2px; width:auto; min-width:170px; list-style:none;}
+.fbdropdownstyle span.value { display:none;}
+.fbdropdownstyle dd ul li a { padding:5px; display:block;}
+.fbdropdownstyle dd ul li a:hover { background-color:#d0c9af;}
+
+.fbdropdownstyle img.flag { border:none; vertical-align:middle; margin-left:10px; }
+.flagvisibility { display:none;}
