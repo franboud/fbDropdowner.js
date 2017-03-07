@@ -1,6 +1,6 @@
 # fbdropdownstyle.js
-Dropdown list styling (&lt;select>).
-Because styling dropdown lists for browsers is pretty much impossible!
+Dropdown list styling (&lt;select>).<br>
+Because styling dropdown lists for browsers is pretty much impossible!<br>
 This plugin transforms the &lt;select> tag to &lt;dl>, &lt;dt> and &lt;dd> tags, which are more stylable.
 
 ## Usage
