@@ -1,41 +1,24 @@
 /**
  * jquery.fbdropdownstyle.js
- * Version 1.0
+ * Version 1.1
  * March 2017
  *
  * Dropdown list styling (<select>).
- * Because styling dropdown lists for browsers is impossible!
+ * Because styling dropdown lists for browsers is pretty much impossible!
  * This plugin transforms the <select> tag to <dl>, <dt> and <dd> tags, which are more stylable.
  * Don't forgot to include the fbdropdownstyle.css file.
  *
  * Required:
  *    - jQuery (tested on jQuery v3.1.1)
- *    - ScrollTo (tested on 2.1.2)
- *    - ScrollMagic (tested on v2.0.5)
  *
- * Pour activer :
+ * To activate :
  *    $(".js-dropdown").fbdropdownstyle();
  *
- * Options configurables :
- *    - section_class --> .js-quicknav-section --> Sections added in the quick nav.
- *    - section_title --> data-quicknav-title --> Data attribute for the title of the section, displayed in the quick nav.
- *    - scroll_offset --> -100 (px) --> Offset of the scroll when we click on a quick nav link.
- *    - scroll_duration --> 500 (ms) --> Duration of the scroll.
  */
 
 (function ($) {
 
     $.fn.fbdropdownstyle = function (options) {
-
-        // Default options.
-        var settings = $.extend({
-            section_class: ".js-quicknav-section",
-            section_class_hide: ".js-quicknav-hide",
-            section_title: "data-quicknav-title",
-            scroll_offset: -100,
-            scroll_duration: 500
-        }, options);
-
 
         // Global vars
         var
