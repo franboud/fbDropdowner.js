@@ -1,47 +1,49 @@
 /**
- * jquery.fbdropdownstyle.js
- * Version 1.2
- * March 2017
+ * jquery.fbDropdowner.js
+ * Version 1.3,
+ * March 11th, 2017
  *
  * Dropdown list styling (<select>).
  * Because styling dropdown lists for browsers is pretty much impossible!
  * This plugin transforms the <select> tag to <dl>, <dt> and <dd> tags, which are more stylable.
- * Don't forgot to include the fbdropdownstyle.css file.
+ * Don't forgot to include the fbdropdowner.css file.
  *
  * Required:
  *    - jQuery (tested on jQuery v3.1.1)
  *
  * To activate :
- *    $(".js-dropdown").fbdropdownstyle();
+ *    $(".js-dropdown").fbDropdowner();
  *
  */
 
 (function ($) {
 
-    $.fn.fbdropdownstyle = function (options) {
+    $.fbDropdowner = function (element) {
 
-        // Global vars
-        var
-            $dropdown,
-            $styleable_dropdown;
+        // to avoid confusions, use "plugin" to reference the
+        // current instance of the object
+        var plugin = this;
+
+        var $dropdown = $(element), // reference to the jQuery version of DOM element
+            dropdown = element,     // reference to the actual DOM element
+            $styleable_dropdown;    // Stylable dropdown that will be created
 
 
-        return this.each(function () {
-            $dropdown = $(this);
-
+        // CONSTRUCTOR method that gets called when the object is created
+        plugin.init = function () {
             create_stylable_dropdown();
             create_events();
-        });
+        }
 
 
         // TRANSFORMS the <select> to more stylable tags
         // Those tags are <dl>, <dt> and <dd>
-        function create_stylable_dropdown() {
+        var create_stylable_dropdown = function() {
             var
                 selected_option = $dropdown.find("option[selected]"),
                 $options = $("option", $dropdown);
 
-            $styleable_dropdown = $('<dl class="fbdropdownstyle"></dl>');
+            $styleable_dropdown = $('<dl class="fbdropdowner"></dl>');
 
             // Si aucun selected option par defaut, prendre le premier.
             if (selected_option.length === 0) {
@@ -73,14 +75,15 @@
                     $(this).text() + '<span class="value">' +
                     $(this).val() + '</span></a></li>');
             });
-
         }
 
 
+        // EVENTS associated with the stylable dropdown.
         function create_events() {
 
             // CLICK on the shown item opens the dropdown.
             $("dt a", $styleable_dropdown).on("click", function (evt) {
+                console.log($styleable_dropdown.html());
                 evt.preventDefault();
                 $("dd ul", $styleable_dropdown).toggle();
             });
@@ -88,7 +91,7 @@
             // CLICK somewhere else in the document closes the dopdown.
             $(document).on('click', function (evt) {
                 var $clicked = $(evt.target);
-                if (!$clicked.parents().hasClass("fbdropdownstyle")) {
+                if (!$clicked.parents().hasClass("fbdropdowner")) {
                     $("dd ul", $styleable_dropdown).hide();
                 }
             });
@@ -112,7 +115,37 @@
                 $(this).addClass("on");
             });
         }
-    };
 
-}(jQuery));
 
+        // fire up the plugin!
+        plugin.init();
+
+    }
+
+    // add the plugin to the jQuery.fn object
+    $.fn.fbDropdowner = function () {
+
+        // iterate through the DOM elements we are attaching the plugin to
+        return this.each(function () {
+
+            // if plugin has not already been attached to the element
+            if (undefined == $(this).data('fbDropdowner')) {
+
+                // create a new instance of the plugin
+                // pass the DOM element and the user-provided options as arguments
+                var plugin = new $.fbDropdowner(this);
+
+                // in the jQuery version of the element
+                // store a reference to the plugin object
+                // you can later access the plugin and its methods and properties like
+                // element.data('fbDropdowner').publicMethod(arg1, arg2, ... argn) or
+                // element.data('fbDropdowner').settings.propertyName
+                $(this).data('fbDropdowner', plugin);
+
+            }
+
+        });
+
+    }
+
+})(jQuery);
