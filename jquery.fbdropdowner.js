@@ -1,6 +1,6 @@
 /**
  * jquery.fbDropdowner.js
- * Version 1.3,
+ * Version 1.4
  * March 11th, 2017
  *
  * Dropdown list styling (<select>).
@@ -11,9 +11,11 @@
  * Required:
  *    - jQuery (tested on jQuery v3.1.1)
  *
- * To activate :
+ * To activate:
  *    $(".js-dropdown").fbDropdowner();
  *
+ * Data attributes:
+ *    - data-fbdropdowner-class --> Add a custom to the stylable dropdown created.
  */
 
 (function ($) {
@@ -44,6 +46,12 @@
                 $options = $("option", $dropdown);
 
             $styleable_dropdown = $('<dl class="fbdropdowner"></dl>');
+
+            // Add a custom class to the dropdown
+            var add_class = $dropdown.attr("data-fbdropdowner-class");
+            if (add_class) {
+                $styleable_dropdown.addClass(add_class);
+            }
 
             // Si aucun selected option par defaut, prendre le premier.
             if (selected_option.length === 0) {
