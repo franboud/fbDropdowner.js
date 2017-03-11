@@ -38,7 +38,7 @@
 
         // TRANSFORMS the <select> to more stylable tags
         // Those tags are <dl>, <dt> and <dd>
-        var create_stylable_dropdown = function() {
+        var create_stylable_dropdown = function () {
             var
                 selected_option = $dropdown.find("option[selected]"),
                 $options = $("option", $dropdown);
@@ -83,7 +83,6 @@
 
             // CLICK on the shown item opens the dropdown.
             $("dt a", $styleable_dropdown).on("click", function (evt) {
-                console.log($styleable_dropdown.html());
                 evt.preventDefault();
                 $("dd ul", $styleable_dropdown).toggle();
             });
