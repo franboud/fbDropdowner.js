@@ -1,6 +1,6 @@
 /**
  * jquery.fbDropdowner.js
- * Version 1.4
+ * Version 1.5
  * March 11th, 2017
  *
  * Dropdown list styling (<select>).
@@ -97,8 +97,10 @@
 
             // CLICK somewhere else in the document closes the dopdown.
             $(document).on('click', function (evt) {
+                if ($styleable_dropdown.is(':hidden')) { return; }
+
                 var $clicked = $(evt.target);
-                if (!$clicked.parents().hasClass("fbdropdowner")) {
+                if (!$clicked.parents(".fbdropdowner").is($styleable_dropdown)) {
                     $("dd ul", $styleable_dropdown).hide();
                 }
             });
