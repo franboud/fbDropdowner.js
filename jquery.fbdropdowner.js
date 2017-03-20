@@ -10,6 +10,7 @@
  *
  * Required:
  *    - jQuery (tested on jQuery v3.1.1)
+ *    - tocca (tested on tocca v2.0.0)
  *
  * To activate:
  *    $(".js-dropdown").fbDropdowner();
@@ -89,14 +90,20 @@
         // EVENTS associated with the stylable dropdown.
         function create_events() {
 
+            // If we are on iPod, iPad or iPhone, "tap" event.
+            var click_or_tap = 'click';
+            if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+                click_or_tap = 'tap';
+            }
+
             // CLICK on the shown item opens the dropdown.
-            $("dt a", $styleable_dropdown).on("click", function (evt) {
+            $("dt a", $styleable_dropdown).on(click_or_tap, function (evt) {
                 evt.preventDefault();
                 $("dd ul", $styleable_dropdown).toggle();
             });
 
             // CLICK somewhere else in the document closes the dopdown.
-            $(document).on('click', function (evt) {
+            $(document).on(click_or_tap, function (evt) {
                 if ($styleable_dropdown.is(':hidden')) { return; }
 
                 var $clicked = $(evt.target);
@@ -106,7 +113,7 @@
             });
 
             // CLICK on the selected item in the dropdown.
-            $("dd a", $styleable_dropdown).on("click", function (evt) {
+            $("dd a", $styleable_dropdown).on(click_or_tap, function (evt) {
                 evt.preventDefault();
 
                 // Select this item and closes the dropdown.
