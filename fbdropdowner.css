@@ -1,13 +1,15 @@
 
-/* FBDROPDOWNER CSS .......................................................................... */
+/*  FBDROPDOWNER CSS ........................................................ */
 
-/* DEFAULT STYLES */
-.fbdropdowner {width: 250px;}
+/*  DEFAULT STYLES
+    Default styles, resets, etc. */
 
     /* Resets */
     .fbdropdowner dd, .fbdropdowner dt, .fbdropdowner ul {margin:0; padding:0;}
 
     /* Default styles */
+    .fbdropdowner {width: 250px;}
+
     .fbdropdowner dd {position:relative;z-index: 2;/* top: -1px; */}
     .fbdropdowner a {color:black; text-decoration:none; outline:none;}
 
@@ -25,8 +27,9 @@
     .fbdropdowner dd ul li a:hover {background-color:#ccc;}
 
 
-/* USER STYLES */
-.fbdropdowner { }
+/*  USER STYLES
+    Overrides of default styles. */
+    .fbdropdowner { }
 
     .fbdropdowner dd { }
     .fbdropdowner a { }
