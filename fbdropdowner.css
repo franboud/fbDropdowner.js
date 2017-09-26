@@ -9,7 +9,7 @@
 
     /* Default styles */
     .fbdropdowner {width: 250px;}
-
+    .fbdropdowner dt { }
     .fbdropdowner dd {position:relative;z-index: 2;/* top: -1px; */}
     .fbdropdowner a {color:black; text-decoration:none; outline:none;}
 
@@ -20,7 +20,10 @@
     .fbdropdowner span.value {display:none;}
     .fbdropdowner dd ul li a {padding: 0.5em 1em;display:block;}
 
-    /* Focus (click on dropdown that makes it open) */
+    /* Dropdown shown / hidden */
+    .fbdropdowner dd ul.show {display:block;}
+
+    /* Focus (when there's a click on dropdown that makes it open) */
     .fbdropdowner dt a:focus {border-color:black;}
 
     /* Hover on option item */

@@ -1,7 +1,7 @@
 /**
  * jquery.fbDropdowner.js
- * Version 1.5
- * March 11th, 2017
+ * Version 1.6
+ * September 26th, 2017
  *
  * Dropdown list styling (<select>).
  * Because styling dropdown lists for browsers is pretty much impossible!
@@ -90,6 +90,9 @@
         // EVENTS associated with the stylable dropdown.
         function create_events() {
 
+            var $dropdown_items_c = $("dd ul", $styleable_dropdown);
+
+
             // If we are on iPod, iPad or iPhone, "tap" event.
             var click_or_tap = 'click';
             if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
@@ -99,7 +102,12 @@
             // CLICK on the shown item opens the dropdown.
             $("dt a", $styleable_dropdown).on(click_or_tap, function (evt) {
                 evt.preventDefault();
-                $("dd ul", $styleable_dropdown).toggle();
+
+                if ($dropdown_items_c.hasClass("show")) {
+                    $dropdown_items_c.removeClass("show");
+                } else {
+                    $dropdown_items_c.addClass("show");
+                }
             });
 
             // CLICK somewhere else in the document closes the dopdown.
@@ -108,7 +116,7 @@
 
                 var $clicked = $(evt.target);
                 if (!$clicked.parents(".fbdropdowner").is($styleable_dropdown)) {
-                    $("dd ul", $styleable_dropdown).hide();
+                    $dropdown_items_c.removeClass("show");
                 }
             });
 
@@ -119,7 +127,7 @@
                 // Select this item and closes the dropdown.
                 var text = $(this).html();
                 $("dt a", $styleable_dropdown).html(text);
-                $("dd ul", $styleable_dropdown).hide();
+                $dropdown_items_c.removeClass("show");
 
                 // Put the selected item in the original dropdown.
                 // And trigger a "change" event.
