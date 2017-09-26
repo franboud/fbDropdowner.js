@@ -16,7 +16,7 @@
  *    $(".js-dropdown").fbDropdowner();
  *
  * Data attributes:
- *    - data-fbdropdowner-class --> Add a custom to the stylable dropdown created.
+ *    - data-fbdropdowner-class --> Add a custom class to the stylable dropdown created.
  */
 
 (function ($) {
