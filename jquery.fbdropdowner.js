@@ -1,6 +1,6 @@
 /**
  * jquery.fbDropdowner.js
- * Version 1.6
+ * Version 1.7
  * September 26th, 2017
  *
  * Dropdown list styling (<select>).
@@ -15,13 +15,18 @@
  * To activate:
  *    $(".js-dropdown").fbDropdowner();
  *
+ * Options configurables :
+ *    - create_default_option --> true --> If false, doesn't create a default option.
+ *          This can be useful if you don't want to use the <dt>, and only
+ *          show the available options.
+ *
  * Data attributes:
  *    - data-fbdropdowner-class --> Add a custom class to the stylable dropdown created.
  */
 
 (function ($) {
 
-    $.fbDropdowner = function (element) {
+    $.fbDropdowner = function (element, options) {
 
         // to avoid confusions, use "plugin" to reference the
         // current instance of the object
@@ -30,6 +35,12 @@
         var $dropdown = $(element), // reference to the jQuery version of DOM element
             dropdown = element,     // reference to the actual DOM element
             $styleable_dropdown;    // Stylable dropdown that will be created
+
+
+        // OPTIONS by default.
+        var settings = $.extend({
+            create_default_option: true
+        }, options);
 
 
         // CONSTRUCTOR method that gets called when the object is created
@@ -55,7 +66,7 @@
             }
 
             // Si aucun selected option par defaut, prendre le premier.
-            if (selected_option.length === 0) {
+            if (selected_option.length === 0 && settings.create_default_option) {
                 selected_option = $dropdown.find("option:first");
             }
 
@@ -147,7 +158,7 @@
     }
 
     // add the plugin to the jQuery.fn object
-    $.fn.fbDropdowner = function () {
+    $.fn.fbDropdowner = function (options) {
 
         // iterate through the DOM elements we are attaching the plugin to
         return this.each(function () {
@@ -157,7 +168,7 @@
 
                 // create a new instance of the plugin
                 // pass the DOM element and the user-provided options as arguments
-                var plugin = new $.fbDropdowner(this);
+                var plugin = new $.fbDropdowner(this, options);
 
                 // in the jQuery version of the element
                 // store a reference to the plugin object
