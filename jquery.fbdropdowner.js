@@ -12,6 +12,8 @@
  *    - jQuery (tested on jQuery v3.1.1)
  *    - tocca (tested on tocca v2.0.0)
  *
+ * TODO : Supprimer le click_or_tap et utiliser FastClick. Supprimer Tocca.
+ *
  * To activate:
  *    $(".js-dropdown").fbDropdowner();
  *
@@ -105,9 +107,11 @@
 
 
             // If we are on iPod, iPad or iPhone, "tap" event.
+            // Un peu useless avec FastClick, et serieux ca a des risques
+            // d'utiliser ca. Donc, pas l'utiliser.
             var click_or_tap = 'click';
             if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-                click_or_tap = 'tap';
+                // click_or_tap = 'tap';
             }
 
             // CLICK on the shown item opens the dropdown.
